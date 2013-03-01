@@ -1,0 +1,21 @@
+name: VVJcJ
+main: fr.vaevictis.main.VVJcJ
+version: 0.1
+
+commands:
+  attaquer:
+    description: Sert à attaquer une ville
+    usage: /attaquer [nomville]
+    permission: VVJcJ.attaquer
+    permission-message: Vous n'avez pas la permission d'attaquer une ville
+  ville:
+    description: Sert à créer une ville
+    usage: /ville [nomville] [capitale]
+    permission: VVJcJ.ville
+    permission-message: Vous n'avez pas la permission de créer une ville
+  setpoint:
+    description: Sert à ajouter un point à une ville. Cette commande ne doit être utilisée que par un seul joueur à la fois.
+    usage: /setpoint [nomville] <ap|a|b|c|pc>
+    permission: VVJcJ.setpoint
+    permission-message: Vous n'avez pas la permission d'ajouter un point à une ville
+    
