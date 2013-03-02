@@ -10,6 +10,7 @@ public class Ville {
 		this.nom = nom;
 		this.capitale = capitale;
 		nombreVilles++;
+		this.timerDebutAttaqueTermine = false;
 	}
 
 	
@@ -52,4 +53,8 @@ public class Ville {
 	
 	public static Ville[] villes;
 	public static int nombreVilles;
+	
+	/* Utilisé pour l'attaque */
+	private boolean timerDebutAttaqueTermine;
+	public void setTimerDebutAttaqueTerminated(boolean b) {this.timerDebutAttaqueTermine = b;}
 }

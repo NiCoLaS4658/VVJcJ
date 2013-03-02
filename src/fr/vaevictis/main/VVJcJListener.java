@@ -16,7 +16,6 @@ public class VVJcJListener implements Listener {
 		this.plugin = plugin;
 	}
 
-	
 	private VVJcJ plugin;
 	
 	/* giveLocationOfBlockPlacedByThePlayer */

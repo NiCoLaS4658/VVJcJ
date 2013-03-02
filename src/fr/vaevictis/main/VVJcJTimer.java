@@ -1,10 +1,15 @@
 package fr.vaevictis.main;
 
-public class VVJcJTimer {
+import java.util.Timer;
+import java.util.TimerTask;
+
+import fr.vaevictis.timertasks.TimerTaskDebutAttaque;
+
+public class VVJcJTimer extends Timer{
 	
-	public static void debutAttaque()
+	public void debutAttaque(Ville v)
 	{
-		
+		super.schedule(new TimerTaskDebutAttaque(v), 600000);
 	}
 	
 	
