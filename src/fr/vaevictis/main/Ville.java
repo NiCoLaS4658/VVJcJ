@@ -9,6 +9,7 @@ public class Ville {
 	{
 		this.nom = nom;
 		this.capitale = capitale;
+		this.numero = nombreVilles;
 		nombreVilles++;
 		this.timerDebutAttaqueTermine = false;
 	}
@@ -16,8 +17,10 @@ public class Ville {
 	
 	public void attaquer()
 	{
-		Bukkit.broadcastMessage("Début de prise de la ville " + this.getNom());
-		
+		Bukkit.broadcastMessage("Début de prise de la ville " + this.getNom() + ". La bataille commence dans 10 minutes.");
+		while(!this.timerDebutAttaqueTermine) {}
+		Bukkit.broadcastMessage("Début de la bataille. Etape : Avant-poste.");
+		/** Continuer le systeme de prise de ville **/
 	}
 	
 	
@@ -43,11 +46,12 @@ public class Ville {
 		this.pc.setLocation(l);
 	}
 	private String nom;
-	private Point ap = new Point(this);
-	private Point a = new Point(this);
-	private Point b = new Point(this);
-	private Point c = new Point(this);
-	private Point pc = new Point(this);
+	private int numero;
+	private Point ap = new Point(this.numero);
+	private Point a = new Point(this.numero);
+	private Point b = new Point(this.numero);
+	private Point c = new Point(this.numero);
+	private Point pc = new Point(this.numero);
 	private boolean capitale;
 	
 	
@@ -56,5 +60,5 @@ public class Ville {
 	
 	/* Utilisé pour l'attaque */
 	private boolean timerDebutAttaqueTermine;
-	public void setTimerDebutAttaqueTerminated(boolean b) {this.timerDebutAttaqueTermine = b;}
+	public void setTimerDebutAttaqueTermine(boolean b) {this.timerDebutAttaqueTermine = b;}
 }

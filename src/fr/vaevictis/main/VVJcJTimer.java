@@ -7,9 +7,9 @@ import fr.vaevictis.timertasks.TimerTaskDebutAttaque;
 
 public class VVJcJTimer extends Timer{
 	
-	public void debutAttaque(Ville v)
+	public void debutAttaque(int ville)
 	{
-		super.schedule(new TimerTaskDebutAttaque(v), 600000);
+		super.schedule(new TimerTaskDebutAttaque(ville), 600000);
 	}
 	
 	

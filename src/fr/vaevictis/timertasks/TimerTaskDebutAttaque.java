@@ -6,16 +6,17 @@ import fr.vaevictis.main.Ville;
 
 public class TimerTaskDebutAttaque extends TimerTask {
 	
-	public TimerTaskDebutAttaque(Ville ville)
+	public TimerTaskDebutAttaque(int ville)
 	{
-		
 		super();
+		this.ville = ville;
 	}
 
 	@Override
 	public void run()
 	{
-		
+		Ville.villes[ville].setTimerDebutAttaqueTermine(true);
 	}
-
+	
+	private int ville;
 }

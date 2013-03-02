@@ -24,8 +24,6 @@ public class VVJcJ extends JavaPlugin
 		
 		PluginManager pm = getServer().getPluginManager();
 		pm.registerEvents(new VVJcJListener(this), this);
-		
-
 	}
 	
 	@Override

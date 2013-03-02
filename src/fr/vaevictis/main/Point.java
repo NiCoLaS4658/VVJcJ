@@ -4,7 +4,7 @@ import org.bukkit.Location;
 
 public class Point {
 	
-	public Point(Ville villeCorrespondante) 
+	public Point(int villeCorrespondante) 
 	{
 		this.etat = Etat.INACTIVABLE;
 		this.villeCorrespondante = villeCorrespondante;
@@ -24,6 +24,6 @@ public class Point {
 	
 	private Location location;
 	private Etat etat;
-	private Ville villeCorrespondante;
+	private int villeCorrespondante;
 
 }
