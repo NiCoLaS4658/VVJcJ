@@ -1,5 +1,6 @@
 package fr.vaevictis.main;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 
 public class Ville {
@@ -11,40 +12,44 @@ public class Ville {
 		nombreVilles++;
 	}
 
-	public void attaquer();
+	
+	public void attaquer()
 	{
-		/** Methode utilisee attaquant la ville **/
+		Bukkit.broadcastMessage("Début de prise de la ville " + this.getNom());
+		
 	}
 	
 	
 	public String getNom() {return nom;}
 	public void setap(Location l)
 	{
-		this.ap = l;
+		this.ap.setLocation(l);
 	}
 	public void seta(Location l)
 	{
-		this.a = l;
+		this.a.setLocation(l);
 	}
 	public void setb(Location l)
 	{
-		this.b = l;
+		this.b.setLocation(l);
 	}
 	public void setc(Location l)
 	{
-		this.c = l;
+		this.c.setLocation(l);
 	}
 	public void setpc(Location l)
 	{
-		this.pc = l;
+		this.pc.setLocation(l);
 	}
 	private String nom;
-	private Location ap;
-	private Location a;
-	private Location b;
-	private Location c;
-	private Location pc;
+	private Point ap = new Point(this);
+	private Point a = new Point(this);
+	private Point b = new Point(this);
+	private Point c = new Point(this);
+	private Point pc = new Point(this);
 	private boolean capitale;
+	
+	
 	public static Ville[] villes;
 	public static int nombreVilles;
 }

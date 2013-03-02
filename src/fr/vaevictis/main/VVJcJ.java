@@ -46,52 +46,55 @@ public class VVJcJ extends JavaPlugin
 		}
 		if(cmd.getName().equalsIgnoreCase("setpoint"))
 		{
-			//Variables permettant au Listener d'avoir des informations sur la commande
-			VVJcJListener.commandSetpointEnabled = true;
-			VVJcJListener.puspc = sender.getName();
-			VVJcJListener.commandCanStop = false;
-			for(int i = 0 ; i < Ville.villes.length ; i++)
+			if(VVJcJListener.commandSetpointEnabled == true)
 			{
-				do
+				//Variables permettant au Listener d'avoir des informations sur la commande
+				VVJcJListener.commandSetpointEnabled = true;
+				VVJcJListener.puspc = sender.getName();
+				VVJcJListener.commandCanStop = false;
+				for(int i = 0 ; i < Ville.villes.length || Ville.villes[i].getNom() != args[0] ; i++)
 				{
-					if (Ville.villes[i].getNom() == args[0])
+					do
 					{
-						// Switch ajoutant le point où est situé le bloc important
-						switch(args[1])
+						if (Ville.villes[i].getNom() == args[0])
 						{
-						case "ap" :
-							Ville.villes[i].setap(VVJcJListener.locationOfBlockPlacedByThePlayer);
-							break;
+							// Switch ajoutant le point où est situé le bloc important
+							switch(args[1])
+							{
+							case "ap" :
+								Ville.villes[i].setap(VVJcJListener.locationOfBlockPlacedByThePlayer);
+								break;
+								
+							case "a" :
+								Ville.villes[i].seta(VVJcJListener.locationOfBlockPlacedByThePlayer);
+								break;
 							
-						case "a" :
-							Ville.villes[i].seta(VVJcJListener.locationOfBlockPlacedByThePlayer);
-							break;
+							case "b" :
+								Ville.villes[i].setb(VVJcJListener.locationOfBlockPlacedByThePlayer);
+								break;
+								
+							case "c" :
+								Ville.villes[i].setc(VVJcJListener.locationOfBlockPlacedByThePlayer);
+								break;
+								
+							case "pc" :
+								Ville.villes[i].setpc(VVJcJListener.locationOfBlockPlacedByThePlayer);
+								break;
 							
-						case "b" :
-							Ville.villes[i].setb(VVJcJListener.locationOfBlockPlacedByThePlayer);
-							break;
-							
-						case "c" :
-							Ville.villes[i].setc(VVJcJListener.locationOfBlockPlacedByThePlayer);
-							break;
-							
-						case "pc" :
-							Ville.villes[i].setpc(VVJcJListener.locationOfBlockPlacedByThePlayer);
-							break;
-					
-						default:
-							sender.sendMessage("Vous n\'avez pas saisi un point valide");
+							default:
+								sender.sendMessage("Vous n\'avez pas saisi un point valide");
+							}
 						}
-					}
-				} while(!VVJcJListener.commandCanStop);
-			}
+					} while(!VVJcJListener.commandCanStop);
+				}
 			// Remise à zero des variables utilisees ici
 			VVJcJListener.commandSetpointEnabled = false;
 			VVJcJListener.puspc = "";
+			}
 		}
 		if(cmd.getName().equalsIgnoreCase("attaquer"))
 		{
-			for(int i = 0 ; i < Ville.villes.length ; i++)
+			for(int i = 0 ; i < Ville.villes.length || Ville.villes[i].getNom() != args[0]; i++)
 			{
 				if (Ville.villes[i].getNom() == args[0])
 				{

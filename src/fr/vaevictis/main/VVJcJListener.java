@@ -5,7 +5,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 
 public class VVJcJListener implements Listener {
 	
@@ -17,12 +19,11 @@ public class VVJcJListener implements Listener {
 	
 	private VVJcJ plugin;
 	
-	/* Groupe servant à giveLocationOfBlockPlacedByThePlayer */
+	/* giveLocationOfBlockPlacedByThePlayer */
 	public static boolean commandSetpointEnabled; // La commande /setpoint est elle en cours d'utilisation
 	public static String puspc; // Nom du joueur utilisant la commande /setpoint
 	public static Location locationOfBlockPlacedByThePlayer;
 	public static boolean commandCanStop; // Le plugin peut-il considerer que la commande est terminee ?
-	/* Groupe servant à giveLocationOfBlockPlacedByThePlayer */
 
 
 	@EventHandler(priority = EventPriority.LOWEST)
@@ -37,5 +38,6 @@ public class VVJcJListener implements Listener {
 			}
 		}
 	}
+	/* giveLocationOfBlockPlacedByThePlayer */
 
 }
