@@ -6,6 +6,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 
@@ -38,5 +39,22 @@ public class VVJcJListener implements Listener {
 		}
 	}
 	/* giveLocationOfBlockPlacedByThePlayer */
+	
+
+	public void cancelBreakingBatailleBlock(BlockBreakEvent event)
+	{
+		if (event.getBlock().getTypeId() == 162)
+		{
+			if (event.getPlayer().getItemInHand().getTypeId() != 7)
+			{
+				event.setCancelled(true);
+			}
+		}
+	}
+	
+	public void SetPointActivePendantBataille()
+	{
+		
+	}
 
 }

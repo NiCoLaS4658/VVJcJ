@@ -25,5 +25,4 @@ public class Point {
 	private Location location;
 	private Etat etat;
 	private int villeCorrespondante;
-
 }

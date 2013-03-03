@@ -1,5 +1,6 @@
 package fr.vaevictis.main;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -18,6 +19,7 @@ public class VVJcJ extends JavaPlugin
 		VVJcJListener.commandSetpointEnabled = false;
 		VVJcJListener.puspc = null;
 		Ville.nombreVilles = 0;
+		Ville.villeAttaquee = -1;
 		
 		/** A faire : Ajouter le systeme de recuperation de villes depuis un fichier YAML vers Ville.villes[] **/
 
@@ -92,12 +94,20 @@ public class VVJcJ extends JavaPlugin
 		}
 		if(cmd.getName().equalsIgnoreCase("attaquer"))
 		{
-			for(int i = 0 ; i < Ville.villes.length || Ville.villes[i].getNom() != args[0]; i++)
+			if (Ville.villeAttaquee != -1)
 			{
-				if (Ville.villes[i].getNom() == args[0])
+				for(int i = 0 ; i < Ville.villes.length || Ville.villes[i].getNom() != args[0]; i++)
 				{
+					if (Ville.villes[i].getNom() == args[0])
+					{
 					Ville.villes[i].attaquer();
+					}
 				}
+		
+			}
+			else
+			{
+				Bukkit.broadcastMessage("La ville " + Ville.villes[Ville.villeAttaquee].getNom() + " est déja attaquée.");
 			}
 		}
 		return false;
