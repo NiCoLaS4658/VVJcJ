@@ -1,6 +1,7 @@
 package fr.vaevictis.main;
 
-public enum Etat {
+public enum Etat
+{
 	ACTIVE,
 	DESACTIVE,
 	INACTIVABLE,

@@ -1,8 +1,10 @@
 package fr.vaevictis.main;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 
-public class Point {
+public class Point
+{
 	
 	public Point(int villeCorrespondante) 
 	{
@@ -19,7 +21,10 @@ public class Point {
 	}
 	public void setEtat(Etat e)
 	{
+		Etat e1 = etat;
 		this.etat = e;
+		ChangementEtatEvent event = new ChangementEtatEvent(e, e1, this.location, this.villeCorrespondante);
+		Bukkit.getServer().getPluginManager().callEvent(event);
 	}
 	
 	private Location location;

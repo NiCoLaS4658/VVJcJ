@@ -3,7 +3,8 @@ package fr.vaevictis.main;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 
-public class Ville {
+public class Ville
+{
 	
 	public Ville(String nom, boolean capitale)
 	{
@@ -18,10 +19,29 @@ public class Ville {
 	public boolean attaquer()
 	{
 		Ville.villeAttaquee = this.numero;
-		Bukkit.broadcastMessage("Début de prise de la ville " + this.getNom() + ". La bataille commence dans 10 minutes.");
+		Bukkit.getServer().broadcastMessage("Début de prise de la ville " + this.getNom() + ". La bataille commence dans 10 minutes.");
+		TimerDebutAttaque timerDebutAttaque = new TimerDebutAttaque();
+		timerDebutAttaque.lancer();		
 		while(!this.timerDebutAttaqueTermine) {}
-		Bukkit.broadcastMessage("Début de la bataille. Etape : Avant-poste.");
+		Bukkit.getServer().broadcastMessage("Début de la bataille. Etape : Avant-poste.");
 		this.ap.setEtat(Etat.DESACTIVE);
+		while(this.ap.getEtat() != Etat.TERMINE)
+		{
+			if (Ville.villeAttaquee == -1)
+			{
+				Bukkit.getServer().broadcastMessage("La prise de la ville " + this.getNom() + " a échoué.");
+				return false;
+			}
+		}
+		Bukkit.getServer().broadcastMessage("L'avant poste a été pris. Etape : Prise des points A, B et C.");
+		while(this.a.getEtat() != Etat.TERMINE && this.b.getEtat() != Etat.TERMINE && this.c.getEtat() != Etat.TERMINE)
+		{
+			if (Ville.villeAttaquee == -1)
+			{
+				Bukkit.getServer().broadcastMessage("La prise de la ville " + this.getNom() + " a échoué.");
+				return false;
+			}
+		}
 		
 		/** Continuer le systeme de prise de ville **/
 		
@@ -52,14 +72,14 @@ public class Ville {
 	{
 		this.pc.setLocation(l);
 	}
-	
+	public boolean isCapitale() {return capitale;}
 	private String nom;
 	private int numero;
-	private Point ap = new Point(this.numero);
-	private Point a = new Point(this.numero);
-	private Point b = new Point(this.numero);
-	private Point c = new Point(this.numero);
-	private Point pc = new Point(this.numero);
+	public Point ap = new Point(this.numero);
+	public Point a = new Point(this.numero);
+	public Point b = new Point(this.numero);
+	public Point c = new Point(this.numero);
+	public Point pc = new Point(this.numero);
 	private boolean capitale;
 	
 	

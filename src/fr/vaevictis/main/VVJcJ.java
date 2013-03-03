@@ -107,7 +107,7 @@ public class VVJcJ extends JavaPlugin
 			}
 			else
 			{
-				Bukkit.broadcastMessage("La ville " + Ville.villes[Ville.villeAttaquee].getNom() + " est déja attaquée.");
+				sender.sendMessage("La ville " + Ville.villes[Ville.villeAttaquee].getNom() + " est déja attaquée.");
 			}
 		}
 		return false;
