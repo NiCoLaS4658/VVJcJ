@@ -14,26 +14,24 @@ public class VVJcJ extends JavaPlugin
 	@Override
 	public void onEnable()
 	{
-		getLogger().info("VVJcJ est activé");
+		System.out.println("[INFO] VVJcJ est active.");
+		PluginManager pm = getServer().getPluginManager();
+		pm.registerEvents(new VVJcJListener(this), this);
 		
 		VVJcJListener.commandSetpointEnabled = false;
 		VVJcJListener.puspc = null;
 		Ville.nombreVilles = 0;
 		Ville.villeAttaquee = -1;
 		
-		/** A faire : Ajouter le systeme de recuperation de villes depuis un fichier YAML vers Ville.villes[] **/
-
-		
-		PluginManager pm = getServer().getPluginManager();
-		pm.registerEvents(new VVJcJListener(this), this);
+		/* A faire : Ajouter le systeme de recuperation de villes depuis un fichier YAML vers Ville.villes[] */
 	}
 	
 	@Override
 	public void onDisable()
 	{
-		/** A faire : Ajouter le système d'enregistrement des villes depuis Ville.villes[] avec tous leurs attributs **/
+		/* A faire : Ajouter le système d'enregistrement des villes depuis Ville.villes[] avec tous leurs attributs */
 		
-		getLogger().info("VVJcJ est désactivé");
+		System.out.println("[INFO] VVJcJ est desactive");
 	}
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
@@ -107,7 +105,7 @@ public class VVJcJ extends JavaPlugin
 			}
 			else
 			{
-				sender.sendMessage("La ville " + Ville.villes[Ville.villeAttaquee].getNom() + " est déja attaquée.");
+				sender.sendMessage("La ville " + Ville.villes[Ville.villeAttaquee].getNom() + " est deja attaquee.");
 			}
 		}
 		return false;

@@ -54,30 +54,50 @@ public class VVJcJListener implements Listener
 				if (event.getBlock().getLocation() == Ville.villes[Ville.villeAttaquee].ap.getLocation() && Ville.villes[Ville.villeAttaquee].ap.getEtat() == Etat.ACTIVE)
 				{
 					Ville.villes[Ville.villeAttaquee].ap.setEtat(Etat.INACTIVABLE);
+					timerAp.cancel();
 					Ville.villeAttaquee = -1;
 				}
 				if (event.getBlock().getLocation() == Ville.villes[Ville.villeAttaquee].a.getLocation() && Ville.villes[Ville.villeAttaquee].a.getEtat() == Etat.ACTIVE)
 				{
 					Ville.villes[Ville.villeAttaquee].ap.setEtat(Etat.INACTIVABLE);
 					Ville.villes[Ville.villeAttaquee].a.setEtat(Etat.INACTIVABLE);
+					timerA.cancel();
 					Ville.villes[Ville.villeAttaquee].b.setEtat(Etat.INACTIVABLE);
+					timerB.cancel();
 					Ville.villes[Ville.villeAttaquee].c.setEtat(Etat.INACTIVABLE);
+					timerC.cancel();
 					Ville.villeAttaquee = -1;
 				}
 				if (event.getBlock().getLocation() == Ville.villes[Ville.villeAttaquee].b.getLocation() && Ville.villes[Ville.villeAttaquee].b.getEtat() == Etat.ACTIVE)
 				{
 					Ville.villes[Ville.villeAttaquee].ap.setEtat(Etat.INACTIVABLE);
 					Ville.villes[Ville.villeAttaquee].a.setEtat(Etat.INACTIVABLE);
+					timerA.cancel();
 					Ville.villes[Ville.villeAttaquee].b.setEtat(Etat.INACTIVABLE);
+					timerB.cancel();
 					Ville.villes[Ville.villeAttaquee].c.setEtat(Etat.INACTIVABLE);
+					timerC.cancel();
 					Ville.villeAttaquee = -1;
 				}
 				if (event.getBlock().getLocation() == Ville.villes[Ville.villeAttaquee].c.getLocation() && Ville.villes[Ville.villeAttaquee].c.getEtat() == Etat.ACTIVE)
 				{
 					Ville.villes[Ville.villeAttaquee].ap.setEtat(Etat.INACTIVABLE);
 					Ville.villes[Ville.villeAttaquee].a.setEtat(Etat.INACTIVABLE);
+					timerA.cancel();
+					Ville.villes[Ville.villeAttaquee].b.setEtat(Etat.INACTIVABLE);
+					timerB.cancel();
+					Ville.villes[Ville.villeAttaquee].c.setEtat(Etat.INACTIVABLE);
+					timerC.cancel();
+					Ville.villeAttaquee = -1;
+				}
+				if (event.getBlock().getLocation() == Ville.villes[Ville.villeAttaquee].pc.getLocation() && Ville.villes[Ville.villeAttaquee].pc.getEtat() == Etat.ACTIVE)
+				{
+					Ville.villes[Ville.villeAttaquee].ap.setEtat(Etat.INACTIVABLE);
+					Ville.villes[Ville.villeAttaquee].a.setEtat(Etat.INACTIVABLE);
 					Ville.villes[Ville.villeAttaquee].b.setEtat(Etat.INACTIVABLE);
 					Ville.villes[Ville.villeAttaquee].c.setEtat(Etat.INACTIVABLE);
+					Ville.villes[Ville.villeAttaquee].pc.setEtat(Etat.INACTIVABLE);
+					timerPc.cancel();
 					Ville.villeAttaquee = -1;
 				}
 			}
@@ -170,10 +190,18 @@ public class VVJcJListener implements Listener
 				this.timerC.lancer();
 			}
 		}
+		if (event.getPoint() == Ville.villes[Ville.villeAttaquee].pc)
+		{
+			if (event.getAncienEtat() == Etat.DESACTIVE && event.getNouvelEtat() == Etat.ACTIVE)
+			{
+				this.timerPc.lancer();
+			}
+		}
 	}
 	public static TimerAvantPoste timerAp = new TimerAvantPoste();
 	public static TimerPoints timerA = new TimerPoints('a');
 	public static TimerPoints timerB = new TimerPoints('b');
 	public static TimerPoints timerC = new TimerPoints('c');
+	public static TimerPointCentral timerPc = new TimerPointCentral();
 	/* lanceCompteurChangementEtat */
 }

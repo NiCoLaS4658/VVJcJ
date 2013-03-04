@@ -6,12 +6,6 @@ import fr.vaevictis.main.Ville;
 
 public class TimerTaskDebutAttaque extends TimerTask
 {
-	
-	public TimerTaskDebutAttaque()
-	{
-		super();
-	}
-
 	@Override
 	public void run()
 	{

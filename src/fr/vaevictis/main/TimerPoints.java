@@ -8,6 +8,7 @@ public class TimerPoints extends Timer
 {
 	public TimerPoints(char point)
 	{
+		super();
 		this.point = point;
 	}
 	public void lancer()

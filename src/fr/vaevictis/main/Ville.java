@@ -19,34 +19,46 @@ public class Ville
 	public boolean attaquer()
 	{
 		Ville.villeAttaquee = this.numero;
-		Bukkit.getServer().broadcastMessage("Début de prise de la ville " + this.getNom() + ". La bataille commence dans 10 minutes.");
+		Bukkit.getServer().broadcastMessage("Debut de prise de la ville " + this.getNom() + ". La bataille commence dans 10 minutes.");
 		TimerDebutAttaque timerDebutAttaque = new TimerDebutAttaque();
 		timerDebutAttaque.lancer();		
 		while(!this.timerDebutAttaqueTermine) {}
-		Bukkit.getServer().broadcastMessage("Début de la bataille. Etape : Avant-poste.");
+		Bukkit.getServer().broadcastMessage("Debut de la bataille. Etape : Avant-poste.");
 		this.ap.setEtat(Etat.DESACTIVE);
 		while(this.ap.getEtat() != Etat.TERMINE)
 		{
 			if (Ville.villeAttaquee == -1)
 			{
-				Bukkit.getServer().broadcastMessage("La prise de la ville " + this.getNom() + " a échoué.");
+				Bukkit.getServer().broadcastMessage("La prise de la ville " + this.getNom() + " a echoue.");
 				return false;
 			}
 		}
-		Bukkit.getServer().broadcastMessage("L'avant poste a été pris. Etape : Prise des points A, B et C.");
+		Bukkit.getServer().broadcastMessage("L'avant poste a ete pris. Etape : Prise des points A, B et C.");
+		this.a.setEtat(Etat.DESACTIVE);
+		this.b.setEtat(Etat.DESACTIVE);
+		this.c.setEtat(Etat.DESACTIVE);
 		while(this.a.getEtat() != Etat.TERMINE && this.b.getEtat() != Etat.TERMINE && this.c.getEtat() != Etat.TERMINE)
 		{
 			if (Ville.villeAttaquee == -1)
 			{
-				Bukkit.getServer().broadcastMessage("La prise de la ville " + this.getNom() + " a échoué.");
+				Bukkit.getServer().broadcastMessage("La prise de la ville " + this.getNom() + " a echoue.");
 				return false;
 			}
 		}
-		
-		/** Continuer le systeme de prise de ville **/
-		
+		Bukkit.getServer().broadcastMessage("Les trois points ont ete pris. Etape : Prise du point central.");
+		this.pc.setEtat(Etat.DESACTIVE);
+		while(this.pc.getEtat() != Etat.TERMINE)
+		{
+			if (Ville.villeAttaquee == -1)
+			{
+				Bukkit.getServer().broadcastMessage("La prise de la ville " + this.getNom() + " a echoue");
+				return false;
+			}
+		}
+		Bukkit.broadcastMessage("Le point central de la ville a ete pris.");
 		Ville.villeAttaquee = -1;
-		Bukkit.broadcastMessage("La prise de ville a réussi.");
+		Bukkit.broadcastMessage("La prise de ville a reussi.");
+		this.timerDebutAttaqueTermine = false;
 		return true;
 	}
 	

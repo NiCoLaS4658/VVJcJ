@@ -8,11 +8,6 @@ import fr.vaevictis.main.Ville;
 
 public class TimerTaskAvantPoste extends TimerTask
 {
-	public TimerTaskAvantPoste()
-	{
-		super();
-	}
-
 	@Override
 	public void run() 
 	{
