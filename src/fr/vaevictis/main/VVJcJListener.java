@@ -2,6 +2,8 @@ package fr.vaevictis.main;
 
 import javax.swing.JTable.PrintMode;
 
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -10,7 +12,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.server.PluginEnableEvent;
 
 public class VVJcJListener implements Listener
 {
@@ -18,6 +22,11 @@ public class VVJcJListener implements Listener
 	public VVJcJListener(VVJcJ plugin)
 	{
 		this.plugin = plugin;
+		this.timerAp = new TimerAvantPoste();
+		this.timerA = new TimerPoints('a');
+		this.timerB =  new TimerPoints('b');
+		this.timerC = new TimerPoints('c');
+		this.timerPc = new TimerPointCentral();
 	}
 
 	private VVJcJ plugin;
@@ -198,10 +207,109 @@ public class VVJcJListener implements Listener
 			}
 		}
 	}
-	public static TimerAvantPoste timerAp = new TimerAvantPoste();
-	public static TimerPoints timerA = new TimerPoints('a');
-	public static TimerPoints timerB = new TimerPoints('b');
-	public static TimerPoints timerC = new TimerPoints('c');
-	public static TimerPointCentral timerPc = new TimerPointCentral();
+	public static TimerAvantPoste timerAp;
+	public static TimerPoints timerA;
+	public static TimerPoints timerB;
+	public static TimerPoints timerC;
+	public static TimerPointCentral timerPc;
 	/* lanceCompteurChangementEtat */
+	
+	
+	/* onPlayerCommandPreprocessed */
+	@EventHandler(priority = EventPriority.LOWEST)
+	public void onPlayerCommandPreprocessed(PlayerCommandPreprocessEvent event)
+	{
+		Player p = event.getPlayer();
+		String[] args = event.getMessage().split(" ");
+			if (args[0].equalsIgnoreCase("/ville") && p.hasPermission("vvjcj.settings"))
+			{
+				if (args.length == 3)
+				{
+					event.setCancelled(true);
+					if (args[2].equals("1"))
+					{	
+						Ville.villes[Ville.nombreVilles] = new Ville(args[1], true);
+						p.sendMessage(ChatColor.GREEN + "La ville " + Ville.villes[Ville.nombreVilles - 1].getNom() + " a ete cree en tant que capitale.");
+					}
+					else if (args[2].equals("0"))
+					{
+						Ville.villes[Ville.nombreVilles] = new Ville(args[1], false);
+						p.sendMessage(ChatColor.GREEN + "La ville " + Ville.villes[Ville.nombreVilles - 1].getNom() + " a ete cree en tant que ville secondaire.");
+					}
+				}
+			}
+		if (args[0].equalsIgnoreCase("/setpoint") && p.hasPermission("vvjcj.settings"))
+		{
+			event.setCancelled(true);
+			if(commandSetpointEnabled == true)
+			{
+				//Variables permettant au Listener d'avoir des informations sur la commande
+				commandSetpointEnabled = true;
+				puspc = p.getName();
+				commandCanStop = false;
+				for(int i = 0 ; i < Ville.villes.length || Ville.villes[i].getNom() != args[1] ; i++)
+				{
+					do
+					{
+						if (Ville.villes[i].getNom() == args[1])
+						{
+							// Switch ajoutant le point où est situé le bloc important
+							switch(args[2])
+							{
+							case "ap" :
+								Ville.villes[i].setap(VVJcJListener.locationOfBlockPlacedByThePlayer);
+								break;
+								
+							case "a" :
+								Ville.villes[i].seta(VVJcJListener.locationOfBlockPlacedByThePlayer);
+								break;
+							
+							case "b" :
+								Ville.villes[i].setb(VVJcJListener.locationOfBlockPlacedByThePlayer);
+								break;
+								
+							case "c" :
+								Ville.villes[i].setc(VVJcJListener.locationOfBlockPlacedByThePlayer);
+								break;
+								
+							case "pc" :
+								Ville.villes[i].setpc(VVJcJListener.locationOfBlockPlacedByThePlayer);
+								break;
+							
+							default:
+								p.sendMessage(ChatColor.RED + "Vous n'avez pas saisi un point valide");
+							}
+						}
+					} while(!commandCanStop);
+				}
+			// Remise à zero des variables utilisees ici
+			VVJcJListener.commandSetpointEnabled = false;
+			VVJcJListener.puspc = "";
+			}
+		}
+		if (args[0].equalsIgnoreCase("/attaquer") && p.hasPermission("vvjcj.war"))
+		{
+			event.setCancelled(true);
+			if (Ville.villeAttaquee != -1)
+			{
+				for(int i = 0 ; i < Ville.villes.length || Ville.villes[i].getNom() != args[0]; i++)
+				{
+					if (Ville.villes[i].getNom() == args[0])
+					{
+					Ville.villes[i].attaquer();
+					}
+				}
+		
+			}
+			else if (Ville.villeAttaquee == -1)
+			{
+				p.sendMessage(ChatColor.RED + "Aucune Ville Trouvée");
+			}
+			else
+			{
+				p.sendMessage(ChatColor.RED + "La ville " + Ville.villes[Ville.villeAttaquee].getNom() + " est deja attaquee.");
+			}
+		}
+	}
+	/* onPlayerCommandPreprocessed */
 }

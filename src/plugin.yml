@@ -7,16 +7,16 @@ commands:
   attaquer:
     description: Sert a attaquer une ville
     usage: /<command> [nomville]
-    permission: VVJcJ.attaquer
+    permission: VVJcJ.war
     permission-message: Vous n'avez pas la permission d'attaquer une ville
   ville:
     description: Sert a creer une ville
     usage: /<command> [nomville] [capitale]
-    permission: VVJcJ.ville
+    permission: VVJcJ.settings
     permission-message: Vous n'avez pas la permission de creer une ville
   setpoint:
     description: Sert a ajouter un point a une ville. Cette commande ne doit etre utilisee que par un seul joueur a la fois.
     usage: /<command> [nomville] [point]
-    permission: VVJcJ.setpoint
+    permission: VVJcJ.settings
     permission-message: Vous n'avez pas la permission d'ajouter un point a une ville
     
