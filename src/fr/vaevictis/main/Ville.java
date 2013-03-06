@@ -1,5 +1,7 @@
 package fr.vaevictis.main;
 
+import java.util.ArrayList;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -103,7 +105,7 @@ public class Ville
 	private boolean capitale;
 	
 	
-	public static Ville[] villes;
+	public static ArrayList<Ville> villes;
 	public static int nombreVilles;
 	public static int villeAttaquee;
 	

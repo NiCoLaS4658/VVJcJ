@@ -33,25 +33,25 @@ public class ChangementEtatEvent extends Event
 	public Etat getAncienEtat() {return this.ancienEtat;}
 	public Point getPoint() 
 	{
-		if (Ville.villes[villeCorrespondante].ap.getLocation() == this.pointLocation)
+		if (Ville.villes.get(villeCorrespondante).ap.getLocation() == this.pointLocation)
 		{
-			return Ville.villes[villeCorrespondante].ap;
+			return Ville.villes.get(villeCorrespondante).ap;
 		}
-		else if (Ville.villes[villeCorrespondante].a.getLocation() == this.pointLocation)
+		else if (Ville.villes.get(villeCorrespondante).a.getLocation() == this.pointLocation)
 		{
-			return Ville.villes[villeCorrespondante].a;
+			return Ville.villes.get(villeCorrespondante).a;
 		}
-		else if (Ville.villes[villeCorrespondante].b.getLocation() == this.pointLocation)
+		else if (Ville.villes.get(villeCorrespondante).b.getLocation() == this.pointLocation)
 		{
-			return Ville.villes[villeCorrespondante].b;
+			return Ville.villes.get(villeCorrespondante).b;
 		}
-		else if (Ville.villes[villeCorrespondante].c.getLocation() == this.pointLocation)
+		else if (Ville.villes.get(villeCorrespondante).c.getLocation() == this.pointLocation)
 		{
-			return Ville.villes[villeCorrespondante].c;
+			return Ville.villes.get(villeCorrespondante).c;
 		}
-		else if (Ville.villes[villeCorrespondante].pc.getLocation() == this.pointLocation)
+		else if (Ville.villes.get(villeCorrespondante).pc.getLocation() == this.pointLocation)
 		{
-			return Ville.villes[villeCorrespondante].pc;
+			return Ville.villes.get(villeCorrespondante).pc;
 		}
 		else 
 		{

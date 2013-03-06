@@ -10,6 +10,6 @@ public class TimerTaskPointCentral extends TimerTask {
 	@Override
 	public void run()
 	{
-		Ville.villes[Ville.villeAttaquee].pc.setEtat(Etat.TERMINE);
+		Ville.villes.get(Ville.villeAttaquee).pc.setEtat(Etat.TERMINE);
 	}
 }

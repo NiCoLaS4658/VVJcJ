@@ -11,6 +11,6 @@ public class TimerTaskAvantPoste extends TimerTask
 	@Override
 	public void run() 
 	{
-		Ville.villes[Ville.villeAttaquee].ap.setEtat(Etat.TERMINE);
+		Ville.villes.get(Ville.villeAttaquee).ap.setEtat(Etat.TERMINE);
 	}	
 }

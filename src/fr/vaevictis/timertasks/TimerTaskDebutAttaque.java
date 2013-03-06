@@ -9,6 +9,6 @@ public class TimerTaskDebutAttaque extends TimerTask
 	@Override
 	public void run()
 	{
-		Ville.villes[Ville.villeAttaquee].setTimerDebutAttaqueTermine(true);
+		Ville.villes.get(Ville.villeAttaquee).setTimerDebutAttaqueTermine(true);
 	}
 }
