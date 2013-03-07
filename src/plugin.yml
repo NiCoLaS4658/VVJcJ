@@ -16,7 +16,7 @@ commands:
     permission-message: Vous n'avez pas la permission de creer une ville
   setpoint:
     description: Sert a ajouter un point a une ville. Cette commande ne doit etre utilisee que par un seul joueur a la fois.
-    usage: /<command> [nomville] [point]
+    usage: /<command> [nomville] [point] [X] [Y] [Z] [nommonde]
     permission: VVJcJ.settings
     permission-message: Vous n'avez pas la permission d'ajouter un point a une ville
     

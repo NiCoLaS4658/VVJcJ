@@ -39,7 +39,11 @@ public class VVJcJListener implements Listener
 	{
 		if (event.getBlock().getTypeId() == 162)
 		{
-			
+			event.getPlayer().sendMessage("Position du bloc :");
+			event.getPlayer().sendMessage("X : " + event.getBlock().getLocation().getBlockX());
+			event.getPlayer().sendMessage("Y : " + event.getBlock().getLocation().getBlockY());
+			event.getPlayer().sendMessage("Z : " + event.getBlock().getLocation().getBlockZ());
+			event.getPlayer().sendMessage("Monde : " + event.getBlock().getLocation().getWorld().getName());
 		}
 	}
 	/* giveLocationOfBlockPlacedByThePlayer */
@@ -199,11 +203,11 @@ public class VVJcJListener implements Listener
 			}
 		}
 	}
-	public static TimerAvantPoste timerAp;
-	public static TimerPoints timerA;
-	public static TimerPoints timerB;
-	public static TimerPoints timerC;
-	public static TimerPointCentral timerPc;
+	public TimerAvantPoste timerAp;
+	public TimerPoints timerA;
+	public TimerPoints timerB;
+	public TimerPoints timerC;
+	public TimerPointCentral timerPc;
 	/* lanceCompteurChangementEtat */
 	
 	
@@ -213,7 +217,7 @@ public class VVJcJListener implements Listener
 	{
 		Player p = event.getPlayer();
 		String[] args = event.getMessage().split(" ");
-			if (args[0].equalsIgnoreCase("/ville") && (p.hasPermission("vvjcj.settings") || p.hasPermission("vvjcj.*")))
+		if (args[0].equalsIgnoreCase("/ville") && (p.hasPermission("vvjcj.settings") || p.hasPermission("vvjcj.*")))
 			{
 				if (args.length == 3)
 				{
@@ -232,31 +236,62 @@ public class VVJcJListener implements Listener
 			}
 		if (args[0].equalsIgnoreCase("/setpoint") && (p.hasPermission("vvjcj.settings") || p.hasPermission("vvjcj.*")))
 		{
-			event.setCancelled(true);
-			
+			if (args.length == 7)
+			{
+				event.setCancelled(true);
+				int i = 0;
+				do
+				{
+					p.sendMessage("Vous etes dans le do while");
+					if (Ville.villes.get(i).getNom() == args[1])
+					{
+						switch (args[2])
+						{
+							case "ap":
+								Ville.villes.get(i).setap(new Location(plugin.getServer().getWorld(args[6]), Integer.valueOf(args[3]), Integer.valueOf(args[4]), Integer.valueOf(args[5])));
+								p.sendMessage("Le point AP a été défini.");
+								break;
+							case "a":
+								Ville.villes.get(i).seta(new Location(plugin.getServer().getWorld(args[6]), Integer.valueOf(args[3]), Integer.valueOf(args[4]), Integer.valueOf(args[5])));
+								p.sendMessage("Le point A a été défini.");
+								break;
+							case "b":
+								Ville.villes.get(i).setb(new Location(plugin.getServer().getWorld(args[6]), Integer.valueOf(args[3]), Integer.valueOf(args[4]), Integer.valueOf(args[5])));
+								p.sendMessage("Le point B a été défini.");
+								break;
+							case "c":
+								Ville.villes.get(i).setc(new Location(plugin.getServer().getWorld(args[6]), Integer.valueOf(args[3]), Integer.valueOf(args[4]), Integer.valueOf(args[5])));
+								p.sendMessage("Le point C a été défini.");
+								break;
+							case "pc":
+								Ville.villes.get(i).setpc(new Location(plugin.getServer().getWorld(args[6]), Integer.valueOf(args[3]), Integer.valueOf(args[4]), Integer.valueOf(args[5])));
+								p.sendMessage("Le point PC a été défini.");
+								break;
+							default:
+								p.sendMessage("Vous n'avez pas saisi une valeur de point valide");
+						}
+					}
+					i++;
+				} while(!(i < Ville.villes.size() || Ville.villes.get(i).getNom() != args[1]));
 			}
 		}
 		if (args[0].equalsIgnoreCase("/attaquer") && (p.hasPermission("vvjcj.war") || p.hasPermission("vvjcj.*")))
 		{
 			event.setCancelled(true);
-			if (Ville.villeAttaquee != -1)
+			if (Ville.villeAttaquee == -1)
 			{
-				for(int i = 0 ; i < Ville.villes.size() || Ville.villes.get(i).getNom() != args[0]; i++)
+				for(int i = 0 ; i < Ville.villes.size() && Ville.villes.get(i).getNom() != args[1]; i++)
 				{
-					if (Ville.villes.get(i).getNom() == args[0])
+					if (Ville.villes.get(i).getNom() == args[1])
 					{
 					Ville.villes.get(i).attaquer();
 					}
 				}
 		
 			}
-			else if (Ville.villeAttaquee == -1)
+			else if (Ville.villeAttaquee != -1)
 			{
-				p.sendMessage(ChatColor.RED + "Aucune Ville Trouvée");
-			}
-			else
-			{
-				p.sendMessage(ChatColor.RED + "La ville " + Ville.villes.get(Ville.villeAttaquee).getNom() + " est deja attaquee.");
+				p.sendMessage(ChatColor.RED + "Une ville est deja attaquee.");
 			}
 		}
 	}

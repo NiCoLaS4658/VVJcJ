@@ -22,7 +22,6 @@ public class VVJcJ extends JavaPlugin
 	public void onEnable()
 	{
 		logger.info("VVJcJ est active.");
-
 		listener = new VVJcJListener(this);
 		PluginManager pm = getServer().getPluginManager();
 		pm.registerEvents(listener, this);
@@ -59,7 +58,7 @@ public class VVJcJ extends JavaPlugin
 		{
 			Ville.villes.get(i).save(this);
 		}
-		
+		this.saveConfig();
 		Ville.villes.clear();
 		logger.info("VVJcJ est desactive");
 	}
