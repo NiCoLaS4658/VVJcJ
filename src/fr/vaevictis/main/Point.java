@@ -3,6 +3,8 @@ package fr.vaevictis.main;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 
+import fr.vaevictis.events.ChangementEtatEvent;
+
 public class Point
 {
 	

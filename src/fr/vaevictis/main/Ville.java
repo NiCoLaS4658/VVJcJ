@@ -7,6 +7,8 @@ import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 
+import fr.vaevictis.timertasks.TimerTaskDebutAttaque;
+
 public class Ville
 {
 	
@@ -16,61 +18,12 @@ public class Ville
 		this.capitale = capitale;
 		this.numero = nombreVilles;
 		nombreVilles++;
-		this.timerDebutAttaqueTermine = false;
 		this.ap = new Point(this.numero);
 		this.a = new Point(this.numero);
 		this.b = new Point(this.numero);
 		this.c = new Point(this.numero);
 		this.pc = new Point(this.numero);
-	}
-
-	
-	public boolean attaquer()
-	{
-		Ville.villeAttaquee = this.numero;
-		Bukkit.getServer().broadcastMessage(ChatColor.DARK_RED + "Debut de prise de la ville " + this.getNom() + ". La bataille commence dans 10 minutes.");
-		TimerDebutAttaque timerDebutAttaque = new TimerDebutAttaque();
-		timerDebutAttaque.lancer();		
-		while(!this.timerDebutAttaqueTermine) {}
-		Bukkit.getServer().broadcastMessage(ChatColor.DARK_RED + "Debut de la bataille. Etape : Avant-poste.");
-		this.ap.setEtat(Etat.DESACTIVE);
-		while(this.ap.getEtat() != Etat.TERMINE)
-		{
-			if (Ville.villeAttaquee == -1)
-			{
-				Bukkit.getServer().broadcastMessage(ChatColor.DARK_RED + "La prise de la ville " + this.getNom() + " a echoue.");
-				return false;
-			}
-		}
-		Bukkit.getServer().broadcastMessage(ChatColor.DARK_RED + "L'avant poste a ete pris. Etape : Prise des points A, B et C.");
-		this.a.setEtat(Etat.DESACTIVE);
-		this.b.setEtat(Etat.DESACTIVE);
-		this.c.setEtat(Etat.DESACTIVE);
-		while(this.a.getEtat() != Etat.TERMINE && this.b.getEtat() != Etat.TERMINE && this.c.getEtat() != Etat.TERMINE)
-		{
-			if (Ville.villeAttaquee == -1)
-			{
-				Bukkit.getServer().broadcastMessage(ChatColor.DARK_RED + "La prise de la ville " + this.getNom() + " a echoue.");
-				return false;
-			}
-		}
-		Bukkit.getServer().broadcastMessage(ChatColor.DARK_RED + "Les trois points ont ete pris. Etape : Prise du point central.");
-		this.pc.setEtat(Etat.DESACTIVE);
-		while(this.pc.getEtat() != Etat.TERMINE)
-		{
-			if (Ville.villeAttaquee == -1)
-			{
-				Bukkit.getServer().broadcastMessage(ChatColor.DARK_RED + "La prise de la ville " + this.getNom() + " a echoue");
-				return false;
-			}
-		}
-		Bukkit.broadcastMessage(ChatColor.DARK_RED + "Le point central de la ville a ete pris.");
-		Ville.villeAttaquee = -1;
-		Bukkit.broadcastMessage(ChatColor.DARK_RED + "La prise de ville a reussi.");
-		this.timerDebutAttaqueTermine = false;
-		return true;
-	}
-	
+	}	
 	
 	public String getNom() {return nom;}
 	public void setap(Location l)
@@ -108,10 +61,6 @@ public class Ville
 	public static ArrayList<Ville> villes;
 	public static int nombreVilles;
 	public static int villeAttaquee;
-	
-	/* Utilisé pour l'attaque */
-	private boolean timerDebutAttaqueTermine;
-	public void setTimerDebutAttaqueTermine(boolean b) {this.timerDebutAttaqueTermine = b;}
 	
 	public void save(VVJcJ plugin)
 	{

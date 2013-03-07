@@ -1,8 +1,12 @@
-package fr.vaevictis.main;
+package fr.vaevictis.events;
 
 import org.bukkit.Location;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
+
+import fr.vaevictis.main.Etat;
+import fr.vaevictis.main.Point;
+import fr.vaevictis.main.Ville;
 
 public class ChangementEtatEvent extends Event
 {
@@ -61,6 +65,8 @@ public class ChangementEtatEvent extends Event
 	
 	public int getVille() {return this.villeCorrespondante;}
 	public Location getLocation() {return this.pointLocation;}
+	
+	@Override
 	public HandlerList getHandlers()
 	{
 		return handlers;
