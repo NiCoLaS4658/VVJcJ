@@ -72,7 +72,7 @@ public class Ville
 		config.set(path + ".ap.x", this.ap.getLocation().getBlockX());
 		config.set(path + ".ap.y", this.ap.getLocation().getBlockY());
 		config.set(path + ".ap.z", this.ap.getLocation().getBlockZ());
-		config.set(path + ".ap.w", this.a.getLocation().getWorld().getName());
+		config.set(path + ".a.w", this.a.getLocation().getWorld().getName());
 		config.set(path + ".a.x", this.a.getLocation().getBlockX());
 		config.set(path + ".a.y", this.a.getLocation().getBlockY());
 		config.set(path + ".a.z", this.a.getLocation().getBlockZ());

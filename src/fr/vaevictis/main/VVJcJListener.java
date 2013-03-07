@@ -70,6 +70,7 @@ public class VVJcJListener implements Listener
 					Bukkit.getServer().getScheduler().cancelTask(apTaskId);
 					apTaskId = -1;
 					Ville.villeAttaquee = -1;
+					Bukkit.getServer().broadcastMessage("La prise de ville a echoue.");
 				}
 				if (event.getBlock().getLocation() == Ville.villes.get(Ville.villeAttaquee).a.getLocation() && Ville.villes.get(Ville.villeAttaquee).a.getEtat() == Etat.ACTIVE)
 				{
@@ -85,6 +86,7 @@ public class VVJcJListener implements Listener
 					cTaskId = -1;
 					apTaskId = -1;
 					Ville.villeAttaquee = -1;
+					Bukkit.getServer().broadcastMessage("La prise de ville a echoue.");
 				}
 				if (event.getBlock().getLocation() == Ville.villes.get(Ville.villeAttaquee).b.getLocation() && Ville.villes.get(Ville.villeAttaquee).b.getEtat() == Etat.ACTIVE)
 				{
@@ -100,6 +102,7 @@ public class VVJcJListener implements Listener
 					cTaskId = -1;
 					apTaskId = -1;
 					Ville.villeAttaquee = -1;
+					Bukkit.getServer().broadcastMessage("La prise de ville a echoue.");
 				}
 				if (event.getBlock().getLocation() == Ville.villes.get(Ville.villeAttaquee).c.getLocation() && Ville.villes.get(Ville.villeAttaquee).c.getEtat() == Etat.ACTIVE)
 				{
@@ -115,6 +118,7 @@ public class VVJcJListener implements Listener
 					cTaskId = -1;
 					apTaskId = -1;
 					Ville.villeAttaquee = -1;
+					Bukkit.getServer().broadcastMessage("La prise de ville a echoue.");
 				}
 				if (event.getBlock().getLocation() == Ville.villes.get(Ville.villeAttaquee).pc.getLocation() && Ville.villes.get(Ville.villeAttaquee).pc.getEtat() == Etat.ACTIVE)
 				{
@@ -130,6 +134,7 @@ public class VVJcJListener implements Listener
 					bTaskId = -1;
 					cTaskId = -1;
 					Ville.villeAttaquee = -1;
+					Bukkit.getServer().broadcastMessage("La prise de ville a echoue.");
 				}
 			}
 		}
@@ -150,39 +155,44 @@ public class VVJcJListener implements Listener
 	{
 		if(event.getAction() == Action.RIGHT_CLICK_BLOCK && event.getClickedBlock().getTypeId() == 162 && Ville.villeAttaquee != -1)
 		{
-			if (event.getClickedBlock().getLocation() == Ville.villes.get(Ville.villeAttaquee).ap.getLocation())
+			if (event.getClickedBlock().getLocation().getBlockX() == Ville.villes.get(Ville.villeAttaquee).ap.getLocation().getBlockX() && event.getClickedBlock().getLocation().getBlockY() == Ville.villes.get(Ville.villeAttaquee).ap.getLocation().getBlockY() && event.getClickedBlock().getLocation().getBlockZ() == Ville.villes.get(Ville.villeAttaquee).ap.getLocation().getBlockZ() && event.getClickedBlock().getWorld().getName() == Ville.villes.get(Ville.villeAttaquee).ap.getLocation().getWorld().getName())
 			{
 				if (Ville.villes.get(Ville.villeAttaquee).ap.getEtat() == Etat.DESACTIVE)
 				{
 					Ville.villes.get(Ville.villeAttaquee).ap.setEtat(Etat.ACTIVE);
+					Bukkit.broadcastMessage(ChatColor.DARK_RED + "Le compteur de l'avant-poste a ete active.");
 				}
 			}
-			else if (event.getClickedBlock().getLocation() == Ville.villes.get(Ville.villeAttaquee).a.getLocation())
+			else if (event.getClickedBlock().getLocation().getBlockX() == Ville.villes.get(Ville.villeAttaquee).a.getLocation().getBlockX() && event.getClickedBlock().getLocation().getBlockY() == Ville.villes.get(Ville.villeAttaquee).a.getLocation().getBlockY() && event.getClickedBlock().getLocation().getBlockZ() == Ville.villes.get(Ville.villeAttaquee).a.getLocation().getBlockZ() && event.getClickedBlock().getWorld().getName() == Ville.villes.get(Ville.villeAttaquee).a.getLocation().getWorld().getName())
 			{
 				if (Ville.villes.get(Ville.villeAttaquee).a.getEtat() == Etat.DESACTIVE)
 				{
 					Ville.villes.get(Ville.villeAttaquee).a.setEtat(Etat.ACTIVE);
+					Bukkit.broadcastMessage(ChatColor.DARK_RED + "Le compteur du point A a ete active.");
 				}
 			}
-			else if (event.getClickedBlock().getLocation() == Ville.villes.get(Ville.villeAttaquee).b.getLocation())
+			else if (event.getClickedBlock().getLocation().getBlockX() == Ville.villes.get(Ville.villeAttaquee).b.getLocation().getBlockX() && event.getClickedBlock().getLocation().getBlockY() == Ville.villes.get(Ville.villeAttaquee).b.getLocation().getBlockY() && event.getClickedBlock().getLocation().getBlockZ() == Ville.villes.get(Ville.villeAttaquee).b.getLocation().getBlockZ() && event.getClickedBlock().getWorld().getName() == Ville.villes.get(Ville.villeAttaquee).b.getLocation().getWorld().getName())
 			{
 				if (Ville.villes.get(Ville.villeAttaquee).b.getEtat() == Etat.DESACTIVE)
 				{
 					Ville.villes.get(Ville.villeAttaquee).b.setEtat(Etat.ACTIVE);
+					Bukkit.broadcastMessage(ChatColor.DARK_RED + "Le compteur du point B a ete active.");
 				}
 			}
-			else if (event.getClickedBlock().getLocation() == Ville.villes.get(Ville.villeAttaquee).c.getLocation())
+			else if (event.getClickedBlock().getLocation().getBlockX() == Ville.villes.get(Ville.villeAttaquee).c.getLocation().getBlockX() && event.getClickedBlock().getLocation().getBlockY() == Ville.villes.get(Ville.villeAttaquee).c.getLocation().getBlockY() && event.getClickedBlock().getLocation().getBlockZ() == Ville.villes.get(Ville.villeAttaquee).c.getLocation().getBlockZ() && event.getClickedBlock().getWorld().getName() == Ville.villes.get(Ville.villeAttaquee).c.getLocation().getWorld().getName())
 			{
 				if (Ville.villes.get(Ville.villeAttaquee).c.getEtat() == Etat.DESACTIVE)
 				{
 					Ville.villes.get(Ville.villeAttaquee).c.setEtat(Etat.ACTIVE);
+					Bukkit.broadcastMessage(ChatColor.DARK_RED + "Le compteur du point C a ete active.");
 				}
 			}
-			else if (event.getClickedBlock().getLocation() == Ville.villes.get(Ville.villeAttaquee).pc.getLocation())
+			else if (event.getClickedBlock().getLocation().getBlockX() == Ville.villes.get(Ville.villeAttaquee).pc.getLocation().getBlockX() && event.getClickedBlock().getLocation().getBlockY() == Ville.villes.get(Ville.villeAttaquee).pc.getLocation().getBlockY() && event.getClickedBlock().getLocation().getBlockZ() == Ville.villes.get(Ville.villeAttaquee).pc.getLocation().getBlockZ() && event.getClickedBlock().getWorld().getName() == Ville.villes.get(Ville.villeAttaquee).pc.getLocation().getWorld().getName())
 			{
 				if (Ville.villes.get(Ville.villeAttaquee).pc.getEtat() == Etat.DESACTIVE)
 				{
 					Ville.villes.get(Ville.villeAttaquee).pc.setEtat(Etat.ACTIVE);
+					Bukkit.broadcastMessage(ChatColor.DARK_RED + "Le compteur du point central a ete active.");
 				}
 			}
 		}
@@ -197,7 +207,7 @@ public class VVJcJListener implements Listener
 		{
 			if (event.getAncienEtat() == Etat.DESACTIVE && event.getNouvelEtat() == Etat.ACTIVE)
 			{
-				BukkitTask apTask = Bukkit.getServer().getScheduler().runTaskLater(this.plugin, new TimerTaskAvantPoste(), 54000);
+				BukkitTask apTask = Bukkit.getServer().getScheduler().runTaskLater(this.plugin, new TimerTaskAvantPoste(), 540);
 				apTask.getTaskId();
 			}
 		}
@@ -205,7 +215,7 @@ public class VVJcJListener implements Listener
 		{
 			if (event.getAncienEtat() == Etat.DESACTIVE && event.getNouvelEtat() == Etat.ACTIVE)
 			{
-				BukkitTask aTask = Bukkit.getServer().getScheduler().runTaskLater(this.plugin, new TimerTaskPoints('a'), (Ville.villes.get(Ville.villeAttaquee).isCapitale()) ?  36000 : 18000);
+				BukkitTask aTask = Bukkit.getServer().getScheduler().runTaskLater(this.plugin, new TimerTaskPoints('a'), (Ville.villes.get(Ville.villeAttaquee).isCapitale()) ?  360 : 180);
 				
 			}
 		}
@@ -213,21 +223,21 @@ public class VVJcJListener implements Listener
 		{
 			if (event.getAncienEtat() == Etat.DESACTIVE && event.getNouvelEtat() == Etat.ACTIVE)
 			{
-				BukkitTask bTask = Bukkit.getServer().getScheduler().runTaskLater(this.plugin, new TimerTaskPoints('b'), (Ville.villes.get(Ville.villeAttaquee).isCapitale()) ?  36000 : 18000);
+				BukkitTask bTask = Bukkit.getServer().getScheduler().runTaskLater(this.plugin, new TimerTaskPoints('b'), (Ville.villes.get(Ville.villeAttaquee).isCapitale()) ?  360 : 180);
 			}
 		}
 		if (event.getPoint() == Ville.villes.get(Ville.villeAttaquee).c)
 		{
 			if (event.getAncienEtat() == Etat.DESACTIVE && event.getNouvelEtat() == Etat.ACTIVE)
 			{
-				BukkitTask cTask = Bukkit.getServer().getScheduler().runTaskLater(this.plugin, new TimerTaskPoints('c'), (Ville.villes.get(Ville.villeAttaquee).isCapitale()) ?  36000 : 18000);
+				BukkitTask cTask = Bukkit.getServer().getScheduler().runTaskLater(this.plugin, new TimerTaskPoints('c'), (Ville.villes.get(Ville.villeAttaquee).isCapitale()) ?  360 : 180);
 			}
 		}
 		if (event.getPoint() == Ville.villes.get(Ville.villeAttaquee).pc)
 		{
 			if (event.getAncienEtat() == Etat.DESACTIVE && event.getNouvelEtat() == Etat.ACTIVE)
 			{
-				BukkitTask pcTask = Bukkit.getServer().getScheduler().runTaskLater(this.plugin, new TimerTaskPointCentral(), 72000);
+				BukkitTask pcTask = Bukkit.getServer().getScheduler().runTaskLater(this.plugin, new TimerTaskPointCentral(), 720);
 			}
 		}
 	}
@@ -329,7 +339,8 @@ public class VVJcJListener implements Listener
 	public void onAttaque(AttaqueEvent event)
 	{
 		Ville.villeAttaquee = event.getVilleAttaquee();
-		Bukkit.getServer().getScheduler().runTaskLater(this.plugin, new TimerTaskDebutAttaque(), 12000);
+		Bukkit.getServer().broadcastMessage(ChatColor.DARK_RED + "La ville " + Ville.villes.get(Ville.villeAttaquee).getNom() + " est attaquee. Debut de la bataille dans 10 minutes.");
+		Bukkit.getServer().getScheduler().runTaskLater(this.plugin, new TimerTaskDebutAttaque(), 120);
 	}
 	/* onAttaque */
 	
@@ -358,6 +369,7 @@ public class VVJcJListener implements Listener
 		if (Ville.villes.get(Ville.villeAttaquee).a.getEtat() == Etat.TERMINE && Ville.villes.get(Ville.villeAttaquee).b.getEtat() == Etat.TERMINE && Ville.villes.get(Ville.villeAttaquee).c.getEtat() == Etat.TERMINE)
 		{
 			Ville.villes.get(Ville.villeAttaquee).pc.setEtat(Etat.DESACTIVE);
+			Bukkit.getServer().broadcastMessage(ChatColor.DARK_RED + "Les trois points ont ete pris. Maintenant vous pouvez attaquer le point central.");
 		}
 	}
 	/* onTimerPointsTermine */

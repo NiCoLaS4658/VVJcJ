@@ -3,6 +3,7 @@ package fr.vaevictis.timertasks;
 import java.util.TimerTask;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.event.Event;
 
 import fr.vaevictis.events.TimerPointsTermineEvent;
@@ -25,21 +26,21 @@ public class TimerTaskPoints extends TimerTask
 		if (this.point == 'a')
 		{
 			Ville.villes.get(Ville.villeAttaquee).a.setEtat(Etat.TERMINE);
-			Bukkit.broadcastMessage("Le point A a ete pris.");
+			Bukkit.broadcastMessage(ChatColor.DARK_RED + "Le point A a ete pris.");
 			TimerPointsTermineEvent event = new TimerPointsTermineEvent();
 			Bukkit.getServer().getPluginManager().callEvent(event);
 		}
 		else if (this.point == 'b')
 		{
 			Ville.villes.get(Ville.villeAttaquee).b.setEtat(Etat.TERMINE);
-			Bukkit.broadcastMessage("Le point B a ete pris.");
+			Bukkit.broadcastMessage(ChatColor.DARK_RED + "Le point B a ete pris.");
 			TimerPointsTermineEvent event = new TimerPointsTermineEvent();
 			Bukkit.getServer().getPluginManager().callEvent(event);
 		}
 		else if (this.point == 'c')
 		{
 			Ville.villes.get(Ville.villeAttaquee).c.setEtat(Etat.TERMINE);
-			Bukkit.broadcastMessage("Le point C a ete pris.");
+			Bukkit.broadcastMessage(ChatColor.DARK_RED + "Le point C a ete pris.");
 			TimerPointsTermineEvent event = new TimerPointsTermineEvent();
 			Bukkit.getServer().getPluginManager().callEvent(event);
 		}

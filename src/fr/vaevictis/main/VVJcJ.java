@@ -33,7 +33,7 @@ public class VVJcJ extends JavaPlugin
 		/* Systeme de recuperation des villes */
 		FileConfiguration config = this.getConfig();
 		int nombreVilles = config.getInt("nombreVilles");
-		for (int i = 0 ; i < (nombreVilles - 1) ; i++)
+		for (int i = 0 ; i < nombreVilles ; i++)
 		{
 			String path = "villes." + String.valueOf(i);
 			if (config.get(path) != null && this.getServer().getWorld(config.getString(path + ".ap.w")) != null)
@@ -45,6 +45,10 @@ public class VVJcJ extends JavaPlugin
 				Ville.villes.get(i).setap(new Location(this.getServer().getWorld(config.getString(path + ".c.w")) , config.getInt(path + ".c.x"), config.getInt(path + ".c.y"), config.getInt(path + ".c.z")));
 				Ville.villes.get(i).setap(new Location(this.getServer().getWorld(config.getString(path + ".pc.w")) , config.getInt(path + ".pc.x"), config.getInt(path + ".pc.y"), config.getInt(path + ".pc.z")));
 			}
+		}
+		for (int i = 0 ; i < Ville.villes.size() ; i++)
+		{
+			Bukkit.getServer().broadcastMessage(Ville.villes.get(i).getNom() + " : " + i);
 		}
 	}
 	
