@@ -239,11 +239,9 @@ public class VVJcJListener implements Listener
 			if (args.length == 7)
 			{
 				event.setCancelled(true);
-				int i = 0;
-				do
+				for (int i = 0 ; i < Ville.villes.size() ; i++)
 				{
-					p.sendMessage("Vous etes dans le do while");
-					if (Ville.villes.get(i).getNom() == args[1])
+					if (Ville.villes.get(i).getNom().equalsIgnoreCase(args[1]))
 					{
 						switch (args[2])
 						{
@@ -271,8 +269,7 @@ public class VVJcJListener implements Listener
 								p.sendMessage("Vous n'avez pas saisi une valeur de point valide");
 						}
 					}
-					i++;
-				} while(!(i < Ville.villes.size() || Ville.villes.get(i).getNom() != args[1]));
+				}
 			}
 		}
 		if (args[0].equalsIgnoreCase("/attaquer") && (p.hasPermission("vvjcj.war") || p.hasPermission("vvjcj.*")))
@@ -280,9 +277,9 @@ public class VVJcJListener implements Listener
 			event.setCancelled(true);
 			if (Ville.villeAttaquee == -1)
 			{
-				for(int i = 0 ; i < Ville.villes.size() && Ville.villes.get(i).getNom() != args[1]; i++)
+				for(int i = 0 ; i < Ville.villes.size(); i++)
 				{
-					if (Ville.villes.get(i).getNom() == args[1])
+					if (Ville.villes.get(i).getNom().equalsIgnoreCase(args[1]))
 					{
 					Ville.villes.get(i).attaquer();
 					}
