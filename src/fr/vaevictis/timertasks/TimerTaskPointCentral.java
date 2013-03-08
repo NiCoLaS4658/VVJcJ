@@ -14,7 +14,12 @@ public class TimerTaskPointCentral extends TimerTask {
 	public void run()
 	{
 		Ville.villes.get(Ville.villeAttaquee).pc.setEtat(Etat.TERMINE);
-		Bukkit.getServer().broadcastMessage(ChatColor.RED + "La ville " + Ville.villes.get(Ville.villeAttaquee).getNom() + " a ete prise.");
+		Bukkit.getServer().broadcastMessage(ChatColor.DARK_RED + "La ville " + Ville.villes.get(Ville.villeAttaquee).getNom() + " a ete prise.");
+		Ville.villes.get(Ville.villeAttaquee).ap.setEtat(Etat.INACTIVABLE);
+		Ville.villes.get(Ville.villeAttaquee).a.setEtat(Etat.INACTIVABLE);
+		Ville.villes.get(Ville.villeAttaquee).b.setEtat(Etat.INACTIVABLE);
+		Ville.villes.get(Ville.villeAttaquee).c.setEtat(Etat.INACTIVABLE);
+		Ville.villes.get(Ville.villeAttaquee).pc.setEtat(Etat.INACTIVABLE);
 		Ville.villeAttaquee = -1;
 	}
 }

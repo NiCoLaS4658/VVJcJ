@@ -40,15 +40,11 @@ public class VVJcJ extends JavaPlugin
 			{
 				Ville.villes.add(new Ville((config.getString(path + ".nom")), (config.getBoolean(path + ".capitale"))));
 				Ville.villes.get(i).setap(new Location(this.getServer().getWorld(config.getString(path + ".ap.w")) , config.getInt(path + ".ap.x"), config.getInt(path + ".ap.y"), config.getInt(path + ".ap.z")));
-				Ville.villes.get(i).setap(new Location(this.getServer().getWorld(config.getString(path + ".a.w")) , config.getInt(path + ".a.x"), config.getInt(path + ".a.y"), config.getInt(path + ".a.z")));
-				Ville.villes.get(i).setap(new Location(this.getServer().getWorld(config.getString(path + ".b.w")) , config.getInt(path + ".b.x"), config.getInt(path + ".b.y"), config.getInt(path + ".b.z")));
-				Ville.villes.get(i).setap(new Location(this.getServer().getWorld(config.getString(path + ".c.w")) , config.getInt(path + ".c.x"), config.getInt(path + ".c.y"), config.getInt(path + ".c.z")));
-				Ville.villes.get(i).setap(new Location(this.getServer().getWorld(config.getString(path + ".pc.w")) , config.getInt(path + ".pc.x"), config.getInt(path + ".pc.y"), config.getInt(path + ".pc.z")));
+				Ville.villes.get(i).seta(new Location(this.getServer().getWorld(config.getString(path + ".a.w")) , config.getInt(path + ".a.x"), config.getInt(path + ".a.y"), config.getInt(path + ".a.z")));
+				Ville.villes.get(i).setb(new Location(this.getServer().getWorld(config.getString(path + ".b.w")) , config.getInt(path + ".b.x"), config.getInt(path + ".b.y"), config.getInt(path + ".b.z")));
+				Ville.villes.get(i).setc(new Location(this.getServer().getWorld(config.getString(path + ".c.w")) , config.getInt(path + ".c.x"), config.getInt(path + ".c.y"), config.getInt(path + ".c.z")));
+				Ville.villes.get(i).setpc(new Location(this.getServer().getWorld(config.getString(path + ".pc.w")) , config.getInt(path + ".pc.x"), config.getInt(path + ".pc.y"), config.getInt(path + ".pc.z")));
 			}
-		}
-		for (int i = 0 ; i < Ville.villes.size() ; i++)
-		{
-			Bukkit.getServer().broadcastMessage(Ville.villes.get(i).getNom() + " : " + i);
 		}
 	}
 	
