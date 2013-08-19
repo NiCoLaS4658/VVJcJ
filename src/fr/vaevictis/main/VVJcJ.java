@@ -13,6 +13,9 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.*;
 
+import com.massivecraft.factions.Faction;
+import com.massivecraft.factions.Factions;
+
 public class VVJcJ extends JavaPlugin
 {
 	private VVJcJListener listener;
@@ -25,7 +28,6 @@ public class VVJcJ extends JavaPlugin
 		listener = new VVJcJListener(this);
 		PluginManager pm = getServer().getPluginManager();
 		pm.registerEvents(listener, this);
-		
 		Ville.nombreVilles = 0;
 		Ville.villeAttaquee = -1;
 		Ville.villes = new ArrayList();
@@ -44,6 +46,7 @@ public class VVJcJ extends JavaPlugin
 				Ville.villes.get(i).setb(new Location(this.getServer().getWorld(config.getString(path + ".b.w")) , config.getInt(path + ".b.x"), config.getInt(path + ".b.y"), config.getInt(path + ".b.z")));
 				Ville.villes.get(i).setc(new Location(this.getServer().getWorld(config.getString(path + ".c.w")) , config.getInt(path + ".c.x"), config.getInt(path + ".c.y"), config.getInt(path + ".c.z")));
 				Ville.villes.get(i).setpc(new Location(this.getServer().getWorld(config.getString(path + ".pc.w")) , config.getInt(path + ".pc.x"), config.getInt(path + ".pc.y"), config.getInt(path + ".pc.z")));
+				Ville.villes.get(i).setFaction(config.getString(path + ".faction"));
 			}
 		}
 	}
@@ -62,4 +65,10 @@ public class VVJcJ extends JavaPlugin
 		Ville.villes.clear();
 		logger.info("VVJcJ est desactive");
 	}
+	public void resetTasksIDs()
+	{
+		listener.resetTasksIds();
+	}
+
+	public VVJcJListener getListener() {return listener;}
 }

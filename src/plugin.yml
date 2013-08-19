@@ -1,22 +1,31 @@
 name: VVJcJ
 main: fr.vaevictis.main.VVJcJ
 author: NiCoLaS4658
-version: 1.0
+version: 2.1
 
 commands:
   attaquer:
-    description: Sert a attaquer une ville
+    description: Sert a attaquer une ville.
     usage: /<command> [nomville]
-    permission: VVJcJ.war
+    permission: vvjcj.war
     permission-message: Vous n'avez pas la permission d'attaquer une ville
   ville:
-    description: Sert a creer une ville
+    description: Sert a creer une ville.
     usage: /<command> [nomville] [capitale]
-    permission: VVJcJ.settings
+    permission: vvjcj.settings
     permission-message: Vous n'avez pas la permission de creer une ville
   setpoint:
-    description: Sert a ajouter un point a une ville. Cette commande ne doit etre utilisee que par un seul joueur a la fois.
+    description: Sert a ajouter un point a une ville.
     usage: /<command> [nomville] [point] [X] [Y] [Z] [nommonde]
-    permission: VVJcJ.settings
+    permission: vvjcj.settings
     permission-message: Vous n'avez pas la permission d'ajouter un point a une ville
-    
+  annuler:
+    description: Sert a annuler une attaque lancee.
+    usage: /<command>
+    permission: vvjcj.war
+    permission-message: Vous n'avez pas la permission d'annuler l'attaque
+  setfaction:
+    description: Sert a regler la faction de la ville.
+    usage: /<command> [ville] [faction]
+    permission: vvjcj.settings
+    permission-message: Vous n'avez pas la permission de changer la faction d'une ville

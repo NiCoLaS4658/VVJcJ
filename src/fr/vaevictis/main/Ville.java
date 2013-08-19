@@ -56,6 +56,13 @@ public class Ville
 	public Point c;
 	public Point pc;
 	private boolean capitale;
+	private String factionId;
+	
+	public String getFaction() {return factionId;}
+	public void setFaction(String id)
+	{
+		this.factionId = id;
+	}
 	
 	
 	public static ArrayList<Ville> villes;
@@ -88,5 +95,46 @@ public class Ville
 		config.set(path + ".pc.x", this.pc.getLocation().getBlockX());
 		config.set(path + ".pc.y", this.pc.getLocation().getBlockY());
 		config.set(path + ".pc.z", this.pc.getLocation().getBlockZ());
+		config.set(path + ".faction", this.getFaction());
+	}
+	
+	public static void annulerAttaque(VVJcJListener listener)
+	{
+		if (Ville.villes.get(Ville.villeAttaquee).ap.getEtat() == Etat.ACTIVE)
+		{
+			Bukkit.getServer().getScheduler().cancelTask(listener.apTaskId);
+		}
+		if (Ville.villes.get(Ville.villeAttaquee).a.getEtat() == Etat.ACTIVE)
+		{
+			Bukkit.getServer().getScheduler().cancelTask(listener.aTaskId);
+		}
+		if (Ville.villes.get(Ville.villeAttaquee).b.getEtat() == Etat.ACTIVE)
+		{
+			Bukkit.getServer().getScheduler().cancelTask(listener.bTaskId);
+		}
+		if (Ville.villes.get(Ville.villeAttaquee).c.getEtat() == Etat.ACTIVE)
+		{
+			Bukkit.getServer().getScheduler().cancelTask(listener.cTaskId);
+		}
+		if (Ville.villes.get(Ville.villeAttaquee).pc.getEtat() == Etat.ACTIVE)
+		{
+			Bukkit.getServer().getScheduler().cancelTask(listener.pcTaskId);
+		}
+		if (listener.taskIdAnnulerAttaque30 != -1)
+		{
+			Bukkit.getServer().getScheduler().cancelTask(listener.taskIdAnnulerAttaque30);
+		}
+		if (listener.taskIdAnnulerAttaque60 != -1)
+		{
+			Bukkit.getServer().getScheduler().cancelTask(listener.taskIdAnnulerAttaque60);
+		}
+		Ville.villes.get(Ville.villeAttaquee).ap.setEtat(Etat.INACTIVABLE);
+		Ville.villes.get(Ville.villeAttaquee).a.setEtat(Etat.INACTIVABLE);
+		Ville.villes.get(Ville.villeAttaquee).b.setEtat(Etat.INACTIVABLE);
+		Ville.villes.get(Ville.villeAttaquee).c.setEtat(Etat.INACTIVABLE);
+		Ville.villes.get(Ville.villeAttaquee).pc.setEtat(Etat.INACTIVABLE);
+		listener.resetTasksIds();
+		listener.playerAttaquant = "";
+		Ville.villeAttaquee = -1;
 	}
 }
